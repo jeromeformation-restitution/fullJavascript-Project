@@ -77,6 +77,10 @@ let UserSchema = new mongoose.Schema({
     type: String,
     required: false,
     trim: true
+  },
+  slug: {
+    type: String,
+    unique:true
   }
 });
 UserSchema.virtual('posts', {

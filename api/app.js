@@ -52,7 +52,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: 'projet-node', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
 
 //Les middlewares de routage
-app.use(userRoutes);
+app.use('/users',userRoutes);
 app.use(PostRoutes);
 
 //Moteurs de template
