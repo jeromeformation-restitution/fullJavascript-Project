@@ -3,15 +3,41 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const methodOverride = require('method-override');
+const bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+//connexion a la base de données
+let mongoose = require('mongoose');
+console.log('Mongoose version : ' + mongoose.version);
+
+// Connexion à mongo
+mongoose.connect('mongodb://localhost/prestataires', {useNewUrlParser:true})
+  .then(
+    () => console.log('Connexion a mongo reussie !'),
+    (err) => {
+      throw new Error(err.message)
+    }
+  );
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(methodOverride(function (req, res) {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    // look in urlencoded POST bodies and delete it
+    var method = req.body._method;
+    delete req.body._method;
+    return method
+  }
+}));
 
 app.use(logger('dev'));
 app.use(express.json());
