@@ -1,68 +1,79 @@
+//Imports
+const createError = require('http-errors');
+const errorHandler = require('errorhandler');
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+let cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
-const errorHandler = require('errorhandler');
-const userRoutes = require('./routes/users');
-const PostRoutes = require('./routes/post');
 const session = require('express-session');
 const cors = require('cors');
+let logger = require('morgan');
+const methodOverride = require('method-override');
+//Imports de routage
+const userRoutes = require('./routes/users');
+const PostRoutes = require('./routes/post');
+//Imports des variables d'environnement
+require('dotenv').config({path:'./config/.env'});
+
 
 //Configure mongoose's promise to global promise
 mongoose.promise = global.Promise;
-
 //Configure isProduction variable
 const isProduction = process.env.NODE_ENV === 'production';
+//Initialisation de l'app
+let app = express();
 
-//Initiate our app
-const app = express();
-
-//Configure our app
-app.use(cors());
-app.use(require('morgan')('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: 'projet-node', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
-app.use(userRoutes);
-app.use(PostRoutes);
-
-if(!isProduction){
-  app.use(errorHandler());
-}
+//Connexion à la base de données
+console.log('mongoose version :' + mongoose.version);
+const DB_URL = process.env.MONGODB_URL;
 //Configure Mongoose
-mongoose.connect('mongodb://localhost/prestataires', { useNewUrlParser: true, useCreateIndex: true }).then(() =>{
+mongoose.connect(DB_URL, { useNewUrlParser: true, useCreateIndex: true }).then(() =>{
   console.log('connected to database');
 }).catch(() =>{
   console.log('failed connected to database');
 });
 
-//Error handlers & middlewares
-if(!isProduction) {
-  app.use((err, req, res, next) => {
-    res.status(err.status || 500);
-    res.json({
-      errors: {
-        message: err.message,
-        error: err,
-      },
-    });
-  });
-}
+//Les middlewares
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(methodOverride(function (req, res) {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    // look in urlencoded POST bodies and delete it
+    var method = req.body._method;
+    delete req.body._method;
+    return method
+  }
+}));
+app.use(cors());
+app.use(logger('dev'));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({ secret: 'projet-node', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
+
+//Les middlewares de routage
+app.use(userRoutes);
+app.use(PostRoutes);
+
+//Moteurs de template
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use((err, req, res, next) => {
-  res.status(err.status || 500);
+//Gestion des erreurs
 
-  res.json({
-    errors: {
-      message: err.message,
-      error: {},
-    },
-  });
+if(!isProduction){
+  app.use(errorHandler());
+}
+app.use(function(req, res, next) {
+  next(createError(404));
 });
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-app.listen(8000, () => console.log('Server running on http://localhost:8000/'));
-
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
 module.exports = app;

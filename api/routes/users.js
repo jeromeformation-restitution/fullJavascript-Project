@@ -10,7 +10,9 @@ router.get('/', function(req, res, next) {
 });
 //Création d'un utilisateur
 router.post('/users', async (req,res) => {
+  const body = req.body.username;
   const user = new User(req.body);
+  console.log(body);
   try{
     const token = await user.newAuthToken();
     res.status(201).send({user, token})
@@ -97,6 +99,4 @@ router.post('/users/logoutall', authenticate, async (req, res) => {
     res.status(500).send()
   }
 });
-
-
 module.exports = router;
