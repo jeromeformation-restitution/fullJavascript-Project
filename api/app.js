@@ -1,65 +1,68 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-const methodOverride = require('method-override');
+const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const errorHandler = require('errorhandler');
+const userRoutes = require('./routes/users');
+const PostRoutes = require('./routes/post');
+const session = require('express-session');
+const cors = require('cors');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//Configure mongoose's promise to global promise
+mongoose.promise = global.Promise;
 
-var app = express();
-//connexion a la base de données
-let mongoose = require('mongoose');
-console.log('Mongoose version : ' + mongoose.version);
+//Configure isProduction variable
+const isProduction = process.env.NODE_ENV === 'production';
 
-// Connexion à mongo
-mongoose.connect('mongodb://localhost/prestataires', {useNewUrlParser:true})
-  .then(
-    () => console.log('Connexion a mongo reussie !'),
-    (err) => {
-      throw new Error(err.message)
-    }
-  );
+//Initiate our app
+const app = express();
 
-// view engine setup
+//Configure our app
+app.use(cors());
+app.use(require('morgan')('dev'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({ secret: 'projet-node', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
+app.use(userRoutes);
+app.use(PostRoutes);
+
+if(!isProduction){
+  app.use(errorHandler());
+}
+//Configure Mongoose
+mongoose.connect('mongodb://localhost/prestataires', { useNewUrlParser: true, useCreateIndex: true }).then(() =>{
+  console.log('connected to database');
+}).catch(() =>{
+  console.log('failed connected to database');
+});
+
+//Error handlers & middlewares
+if(!isProduction) {
+  app.use((err, req, res, next) => {
+    res.status(err.status || 500);
+    res.json({
+      errors: {
+        message: err.message,
+        error: err,
+      },
+    });
+  });
+}
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(methodOverride(function (req, res) {
-  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-    // look in urlencoded POST bodies and delete it
-    var method = req.body._method;
-    delete req.body._method;
-    return method
-  }
-}));
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
+app.use((err, req, res, next) => {
   res.status(err.status || 500);
-  res.render('error');
+
+  res.json({
+    errors: {
+      message: err.message,
+      error: {},
+    },
+  });
 });
+
+app.listen(8000, () => console.log('Server running on http://localhost:8000/'));
+
 module.exports = app;
