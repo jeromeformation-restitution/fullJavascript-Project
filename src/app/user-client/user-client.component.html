@@ -1,55 +1,58 @@
 <section class="container">
-<form method="POST" action="http://localhost:3000/users">
-  <div class="form-group has-error"> <!-- User name -->
+<form (ngSubmit)="sendUser()">
+  <div class="form-group"> <!-- User name -->
     <label for="user_name" class="control-label">User Name</label>
-    <input type="text" class="form-control" id="user_name" name="username" placeholder="Martin">
-    <p id="user_name_error" class="help-block">Invalid user name.</p>
+    <input [(ngModel)]="user.username" type="text" class="form-control" id="user_name" name="username" placeholder="Martin">
+    <div class="invalid-feedback">
+      Please choose a username.
+    </div>
   </div>
-  <div class="form-group has-error"> <!-- First Name -->
+  <div class="form-group"> <!-- First Name -->
     <label for="first_name" class="control-label">First Name</label>
-    <input type="text" class="form-control" id="first_name" name="firstname" placeholder="Martin">
+    <input [(ngModel)]="user.firstName" type="text" class="form-control" id="first_name" name="firstName" placeholder="Martin">
     <p id="first_name_error" class="help-block">Invalid first name.</p>
   </div>
 
-  <div class="form-group has-error"> <!-- Last Name -->
+  <div class="form-group"> <!-- Last Name -->
     <label for="last_name" class="control-label">Last Name</label>
-    <input type="text" class="form-control" id="last_name" name="lastname" placeholder="Toha">
+    <input [(ngModel)]="user.lastName" type="text" class="form-control" id="last_name" name="lastName" placeholder="Toha">
     <p id="last_name_error" class="help-block">Invalid last name.</p>
   </div>
 
-  <div class="form-group has-error"> <!-- Email -->
+  <div class="form-group"> <!-- Email -->
     <label for="email" class="control-label">E-mail</label>
-    <input type="text" class="form-control" id="email" name="email" placeholder="your@email.com">
+    <input [(ngModel)]="user.email" type="text" class="form-control" id="email" name="email" placeholder="your@email.com">
     <p id="email_error" class="help-block">Invalid email address.</p>
   </div>
 
-  <div class="form-group has-error"> <!-- adresse -->
+  <div class="form-group"> <!-- adresse -->
     <label for="adresse" class="control-label">adresse</label>
-    <input type="text" class="form-control" id="adresse" name="adresse" placeholder="*****">
+    <input [(ngModel)]="user.adresse" type="text" class="form-control" id="adresse" name="adresse" placeholder="*****">
     <p id="adresse error" class="help-block">Invalid adresse.</p>
   </div>
 
-  <div class="form-group has-error"> <!-- Ville -->
+  <div class="form-group"> <!-- Ville -->
     <label for="ville" class="control-label">Ville</label>
-    <input type="text" class="form-control" id="ville" name="ville" placeholder="Paris">
+    <input [(ngModel)]="user.ville" type="text" class="form-control" id="ville" name="ville" placeholder="Paris">
     <p id="ville_error" class="help-block">Invalid Ville</p>
   </div>
 
-  <div class="form-group has-error"> <!-- Password -->
+  <div class="form-group"> <!-- Password -->
     <label for="password" class="control-label">Password</label>
-    <input type="text" class="form-control" id="password" name="password" placeholder="*****">
+    <input [(ngModel)]="user.password" type="password" class="form-control" id="password" name="password" placeholder="*****">
     <p id="password_error" class="help-block">Invalid password.</p>
   </div>
 
-  <div class="form-group has-error"> <!-- siret -->
+<!--  <div class="form-group has-error"> &lt;!&ndash; siret &ndash;&gt;
     <label for="siret" class="control-label">siret</label>
     <input type="number" class="form-control" id="siret" name="siret" placeholder="*****">
     <p id="siret error" class="help-block">Invalid siret.</p>
-  </div>
+  </div>-->
 
-  <div class="form-group has-error"> <!-- Register Button -->
+  <div class="form-group"> <!-- Register Button -->
     <button type="submit" class="btn btn-primary">Register</button>
   </div>
-
 </form>
+
+  <p>{{ user | json }}</p>
 </section>
