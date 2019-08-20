@@ -84,6 +84,16 @@ let UserSchema = new mongoose.Schema({
   slug: {
     type: String,
     unique:true
+  },
+  tel:{
+    type: Number
+  },
+  imageUser: {
+    type: String,
+    default: 'user_circle.png'
+  },
+  isAdmin: {
+    type: Boolean
   }
 });
 UserSchema.virtual('posts', {
