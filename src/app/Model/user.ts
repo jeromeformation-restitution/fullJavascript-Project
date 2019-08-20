@@ -18,5 +18,4 @@ export class User {
     this.siret = 0;
   }
 
-
 }
