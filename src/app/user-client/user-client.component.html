@@ -1,14 +1,19 @@
 <section class="container">
 <form method="POST" action="http://localhost:3000/users">
+  <div class="form-group has-error"> <!-- User name -->
+    <label for="user_name" class="control-label">User Name</label>
+    <input type="text" class="form-control" id="user_name" name="username" placeholder="Martin">
+    <p id="user_name_error" class="help-block">Invalid user name.</p>
+  </div>
   <div class="form-group has-error"> <!-- First Name -->
     <label for="first_name" class="control-label">First Name</label>
-    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Martin">
+    <input type="text" class="form-control" id="first_name" name="firstname" placeholder="Martin">
     <p id="first_name_error" class="help-block">Invalid first name.</p>
   </div>
 
   <div class="form-group has-error"> <!-- Last Name -->
     <label for="last_name" class="control-label">Last Name</label>
-    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Toha">
+    <input type="text" class="form-control" id="last_name" name="lastname" placeholder="Toha">
     <p id="last_name_error" class="help-block">Invalid last name.</p>
   </div>
 
@@ -24,22 +29,16 @@
     <p id="adresse error" class="help-block">Invalid adresse.</p>
   </div>
 
-  <div class="form-group has-error"> <!-- Zip Code -->
-    <label for="zipcode" class="control-label">Zip Code</label>
-    <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="#####">
-    <p id="zipcode_error" class="help-block">Invalid zip code.</p>
+  <div class="form-group has-error"> <!-- Ville -->
+    <label for="ville" class="control-label">Ville</label>
+    <input type="text" class="form-control" id="ville" name="ville" placeholder="Paris">
+    <p id="ville_error" class="help-block">Invalid Ville</p>
   </div>
 
   <div class="form-group has-error"> <!-- Password -->
     <label for="password" class="control-label">Password</label>
     <input type="text" class="form-control" id="password" name="password" placeholder="*****">
     <p id="password_error" class="help-block">Invalid password.</p>
-  </div>
-
-  <div class="form-group has-error"> <!-- CreatedAt -->
-    <label for="CreatedAt" class="control-label">CreatedAt</label>
-    <input type="date" class="form-control" id="CreatedAt" name="CreatedAt" placeholder="*****">
-    <p id="CreatedAt error" class="help-block">Invalid CreatedAt.</p>
   </div>
 
   <div class="form-group has-error"> <!-- siret -->

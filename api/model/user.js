@@ -54,12 +54,12 @@ let UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  firstName: {
+  firstname: {
     type: String,
     required: false,
     trim: true
   },
-  lastName: {
+  lastname: {
     type: String,
     required: false,
     trim: true
