@@ -2,7 +2,6 @@ const User = require('../model/user');
 const createError = require('http-errors');
 const slug = require('slug');
 const {ObjectID}  = require('mongodb');
-
 /**
  * Affichage de tous les profils utilisateurs (GET sur le point de montage "/users")
  * @param req
@@ -59,7 +58,6 @@ module.exports.connect = async (req, res) => {
  * @param res
  * @returns {Promise<void>}
  */
-
 module.exports.show = async (req,res)=> {
     res.json(req.user);
 };
@@ -88,7 +86,6 @@ module.exports.update = async (req,res) => {
         res.status(400).json()
     }
 };
-
 /**
  * Suppression du prodil de l'utilisateur connecté (DELETE sur le point de montage "/users/profil"
  * @param req

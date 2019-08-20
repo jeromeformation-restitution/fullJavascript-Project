@@ -4,3 +4,48 @@ block content
   h1= message
   h2= error.status
   pre #{error.stack}
+  h2= "Liste des routes"
+  table
+    thead
+      tr
+        th Chemin
+        th Methode
+        th Description
+    tr
+      td(colspan='3')
+        strong Users
+    tr
+      td /users
+      td GET
+      td Pour afficher la liste de tous les profils user
+    tr
+      td /users
+      td POST
+      td Pour créer un compte user
+    tr
+      td /users/login
+      td POST
+      td Pour se connecter
+    tr
+      td /users/logout
+      td POST
+      td Pour déconnecter l'utilisateur connecté
+    tr
+      td /users/logoutall
+      td POST
+      td Pour déconnecter l'utilisateur connecté en supprimant tous les tokens
+    tr
+      td /users/profile
+      td GET
+      td Pour visualiser le profil de l'utilisateur connecté
+    tr
+      td /users/profile
+      td PATCH
+      td Pour modifier le profil de l'utilisateur connecté
+    tr
+      td /users/profile
+      td DELETE
+      td Pour supprimer le profil de l'utilisateur connecté
+
+
+
