@@ -1,0 +1,79 @@
+h2= "Liste des routes"
+table
+  thead
+    tr
+      th Chemin
+      th Methode
+      th Description
+      th Authentification
+  tr
+    td(colspan='4' style='background-color:black; color:white')
+      strong Users
+  tr
+    td /users
+    td GET
+    td Pour afficher la liste de tous les profils user
+    td
+  tr
+    td /users
+    td POST
+    td Pour créer un compte user
+    td
+  tr
+    td /users/login
+    td POST
+    td Pour se connecter
+    td
+  tr
+    td /users/logout
+    td POST
+    td Pour déconnecter l'utilisateur connecté
+    td X
+  tr
+    td /users/logoutall
+    td POST
+    td Pour déconnecter l'utilisateur connecté en supprimant tous les tokens
+    td X
+  tr
+    td /users/profile
+    td GET
+    td Pour visualiser le profil de l'utilisateur connecté
+    td X
+  tr
+    td /users/profile
+    td PATCH
+    td Pour modifier le profil de l'utilisateur connecté
+    td X
+  tr
+    td /users/profile
+    td DELETE
+    td Pour supprimer le profil de l'utilisateur connecté
+    td X
+  tr
+    td(colspan='4' style='background-color:black; color:white')
+      strong Annonces
+  tr
+    td /annonces
+    td GET
+    td Pour obtenir la liste de toutes les annonces
+    td
+  tr
+    td /annonces/:slug
+    td GET
+    td Pour voir le detail d'une annonce
+    td
+  tr
+    td /annonces
+    td POST
+    td Pour créer une annonce
+    td X
+  tr
+    td /annonces/:slug
+    td PATCH
+    td Pour modifier une annonce
+    td X
+  tr
+    td /annonces/:slug
+    td DELETE
+    td Pour supprimer une annonce
+    td X

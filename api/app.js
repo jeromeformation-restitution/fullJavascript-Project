@@ -11,6 +11,7 @@ const cors = require('cors');
 let logger = require('morgan');
 const methodOverride = require('method-override');
 //Imports de routage
+const indexRoutes = require('./routes/index');
 const userRoutes = require('./routes/users');
 const postRoutes = require('./routes/post');
 //Imports des variables d'environnement
@@ -52,6 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: 'projet-node', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
 
 //Les middlewares de routage
+app.use('/', indexRoutes)
 app.use('/users',userRoutes);
 app.use('/annonces',postRoutes);
 
