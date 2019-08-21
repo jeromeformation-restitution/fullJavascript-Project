@@ -11,7 +11,6 @@ const {ObjectID}  = require('mongodb');
 module.exports.list = (req, res, next) => {
     User.find((err, users) => {
         if (err) {
-            console.log(users);
             next(err);
         } else {
             console.log(users);
@@ -80,6 +79,7 @@ module.exports.display = async (req,res)=> {
       res.json(user);
   });
 };
+
 /**
  * Modification du profil de l'utilisateur connecté (PATCH sur le point de montage "/users/profil")
  * @param req

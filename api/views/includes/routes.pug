@@ -68,6 +68,11 @@ table
     td Pour voir le detail d'une annonce
     td
   tr
+    td /annonces/search
+    td POST
+    td Pour chercher des annonces en fonction du titre ou de la catgeorie
+    td
+  tr
     td /annonces
     td POST
     td Pour créer une annonce
@@ -81,4 +86,27 @@ table
     td /annonces/:slug
     td DELETE
     td Pour supprimer une annonce
+    td X
+  tr
+    td(colspan='4' style='background-color:black; color:white')
+      strong Messages
+  tr
+    td /msg
+    td GET
+    td Pour récupérer tous les messages dont le déstinataire est l'user connecté
+    td X
+  tr
+    td /msg/send
+    td POST
+    td Pour envoyer un message
+    td X
+  tr
+    td /msg/:id
+    td GET
+    td Pour visualiser le détail d'un message
+    td X
+  tr
+    td /mesg/:id
+    td DELETE
+    td Pour supprimer un message
     td X
