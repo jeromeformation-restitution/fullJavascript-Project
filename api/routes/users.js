@@ -27,3 +27,7 @@ router.post('/logoutall', authenticate, userController.logoutAll);
 //Pour rechercher les users par profession
 router.post('/search', userController.search);
 module.exports = router;
+
+
+
+

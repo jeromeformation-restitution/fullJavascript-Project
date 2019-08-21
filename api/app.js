@@ -14,6 +14,7 @@ const methodOverride = require('method-override');
 const indexRoutes = require('./routes/index');
 const userRoutes = require('./routes/users');
 const postRoutes = require('./routes/post');
+const msgRoutes =  require('./routes/msg');
 //Imports des variables d'environnement
 require('dotenv').config({path:'./config/.env'});
 
@@ -56,6 +57,7 @@ app.use(session({ secret: 'projet-node', cookie: { maxAge: 60000 }, resave: fals
 app.use('/', indexRoutes)
 app.use('/users',userRoutes);
 app.use('/annonces',postRoutes);
+app.use('/msg', msgRoutes);
 
 //Moteurs de template
 app.set('views', path.join(__dirname, 'views'));

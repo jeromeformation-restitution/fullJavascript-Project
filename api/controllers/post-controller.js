@@ -1,5 +1,4 @@
 const Post = require('../model/post');
-const {ObjectID}  = require('mongodb');
 const slug = require('slug');
 
 /**
@@ -11,7 +10,6 @@ const slug = require('slug');
 module.exports.list = (req, res, next) => {
   Post.find((err, posts) => {
     if (err) {
-      console.log(posts);
       next(err);
     } else {
       console.log(posts);
