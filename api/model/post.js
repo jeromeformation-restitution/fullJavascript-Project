@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 
+
+const categorySchema = new mongoose.Schema({
+  libelle: String
+});
 const PostSchema  = new mongoose.Schema({
   title:{
     type:String,
@@ -14,16 +18,22 @@ const PostSchema  = new mongoose.Schema({
   },
   author:{
     type: mongoose.Schema.Types.ObjectId,
-    required:true,
     ref:'User'
   },
   createdAt:{
     type: Date,
     default: Date.now
+  },
+  categories: [categorySchema],
+  imagePost:{
+    type: String,
+    default: 'posts.png'
+  },
+  slug: {
+    type: String,
+    unique:true
   }
 });
-
-
 const Post = mongoose.model('Post', PostSchema);
 
 module.exports = Post;
