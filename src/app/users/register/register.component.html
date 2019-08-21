@@ -1,0 +1,12 @@
+<h1>Inscription</h1>
+
+<label for="username">Nom d'utilisateur</label>
+<input type="username" id="username">
+
+<div *ngIf="isPro">
+  <label for="siret">SIRET</label>
+  <input type="siret" id="siret">
+</div>
+
+
+<p>{{user | json}}</p>
