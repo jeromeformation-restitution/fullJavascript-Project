@@ -1,67 +1,66 @@
+<section class="container">
+
 <h1>Création d'un Profil Professionnelle</h1>
-<form class="example-form" (ngSubmit)="senduserAPI()">
-  <mat-form-field>
-    <label>
-      <input [(ngModel)]="user.username" name="name" matInput placeholder="Pseudo">
-    </label>
-  </mat-form-field>
 
-  <mat-form-field>
-    <label>
-      <input [(ngModel)]="user.password" name="password" matInput placeholder="Mot de Passe">
-    </label>
-  </mat-form-field>
+<form (ngSubmit)="sendUser()">
 
-  <mat-form-field>
-    <label>
-      <input [(ngModel)]="user.email" name="email" matInput placeholder="Email">
-    </label>
-  </mat-form-field>
+  <div class="form-group">
+    <label for="pseudo" class="control-label">Pseudo</label>
+  <input [(ngModel)]="user.username" type="text" class="form-control" id="pseudo" name="username" placeholder="Pseudo">
+  </div>
 
-  <mat-form-field>
-    <label>
-      <input [(ngModel)]="user.firstName" name="prenom" matInput placeholder="Prenom">
-    </label>
-  </mat-form-field>
+  <div class="form-group">
+    <label for="password" class="control-label">Mot de Passe</label>
+      <input [(ngModel)]="user.password" type="password" class="form-control" name="password" id="password"  placeholder="Mot de Passe">
+  </div>
 
-  <mat-form-field>
-    <label>
-      <input [(ngModel)]="user.lastName" name="nom" matInput placeholder="Nom">
-    </label>
-  </mat-form-field>
+  <div class="form-group">
+    <label for="email" class="control-label">Email</label>
+      <input [(ngModel)]="user.email" type="text" class="form-control" name="email" id="email" placeholder="Email">
+  </div>
 
-  <mat-form-field>
-    <label>
-      <textarea [(ngModel)]="user.adresse" name="adresse" matInput placeholder="Adresse"></textarea>
-    </label>
-  </mat-form-field>
+  <div class="form-group">
+    <label for="prenom" class="control-label">Prenom</label>
+      <input [(ngModel)]="user.firstName" type="text" class="form-control" name="prenom" id="prenom" placeholder="Prenom">
+  </div>
 
-  <mat-form-field>
-    <label>
-      <input [(ngModel)]="user.ville" name="ville" matInput placeholder="Ville">
-    </label>
-  </mat-form-field>
+  <div class="form-group">
+    <label for="nom" class="control-label">Nom</label>
+    <input [(ngModel)]="user.lastName" type="text" class="form-control" name="nom" id="nom" placeholder="Nom">
+  </div>
 
-  <mat-form-field>
-    <label>
-      <input [(ngModel)]="user.siret" name="siret" matInput placeholder="Siret">
-    </label>
-  </mat-form-field>
+  <div class="form-group">
+    <label for="role" class="control-label">Role</label>
+    <input [(ngModel)]="user.role" type="radio" class="form-control" name="professionnelle" value="professionnelle" id="role" placeholder="Role">
+    <label for="role">Professionnelle</label>
+    <input [(ngModel)]="user.role" type="radio" class="form-control" name="client" value="client" id="role2" placeholder="Role">
+    <label for="role2">Client</label>
+  </div>
 
-  <mat-form-field>
-    <label>
-      <input [(ngModel)]="user.role" name="role" matInput placeholder="Role">
-    </label>
-  </mat-form-field>
+  <div class="form-group">
+    <label for="siret" class="control-label">Siret</label>
+    <input [(ngModel)]="user.siret" type="text" class="form-control" name="siret" id="siret" placeholder="siret">
+  </div>
 
-  <mat-form-field>
-    <label>
-      <input [(ngModel)]="user.CreatedAt" name="created" matInput placeholder="Date">
-    </label>
-  </mat-form-field>
+  <div class="form-group">
+    <label for="adresse" class="control-label">Adresse</label>
+    <input [(ngModel)]="user.adresse" type="text" class="form-control" name="adresse" id="adresse" placeholder="Adresse">
+  </div>
 
-  <button mat-button class="blue-grey">Valider</button>
+  <div class="form-group">
+    <label for="ville" class="control-label">Ville</label>
+    <input [(ngModel)]="user.ville" type="text" class="form-control" name="ville" id="ville" placeholder="Ville">
+  </div>
+
+  <div class="form-group">
+    <label for="date" class="control-label">CreatedAt</label>
+    <input [(ngModel)]="user.CreatedAt" type="date" class="form-control" name="date" id="date" placeholder="Date">
+  </div>
+
+  <div class="form-group"> <!-- Register Button -->
+    <button type="submit" class="btn btn-primary">Register</button>
+  </div>
 </form>
 
   <p>{{ user | json }}</p>
-
+</section>

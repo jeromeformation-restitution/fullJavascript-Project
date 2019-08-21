@@ -14,17 +14,6 @@ export class ProfessionnelleComponent implements OnInit {
   constructor() {
     this.user = new User();
   }
-
-  public senduserAPI() {
-    this.user(
-      datas => {
-        console.log(datas.message);
-        if (datas.message === 'User bien crée'){
-          this.router.navigate(['/utilisateur/' + this.user]);
-        }
-      }
-      );
-  }
   ngOnInit() {
   }
 

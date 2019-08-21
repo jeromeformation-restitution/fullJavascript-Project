@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserClientComponent } from './user-client/user-client.component';
 import { ProfessionnelleComponent } from './professionnelle/professionnelle.component';
+import {MatInputModule} from '@angular/material/input';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { ProfessionnelleComponent } from './professionnelle/professionnelle.comp
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatInputModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
