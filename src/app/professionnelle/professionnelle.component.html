@@ -1,0 +1,67 @@
+<h1>Création d'un Profil Professionnelle</h1>
+<form class="example-form" (ngSubmit)="senduserAPI()">
+  <mat-form-field>
+    <label>
+      <input [(ngModel)]="user.username" name="name" matInput placeholder="Pseudo">
+    </label>
+  </mat-form-field>
+
+  <mat-form-field>
+    <label>
+      <input [(ngModel)]="user.password" name="password" matInput placeholder="Mot de Passe">
+    </label>
+  </mat-form-field>
+
+  <mat-form-field>
+    <label>
+      <input [(ngModel)]="user.email" name="email" matInput placeholder="Email">
+    </label>
+  </mat-form-field>
+
+  <mat-form-field>
+    <label>
+      <input [(ngModel)]="user.firstName" name="prenom" matInput placeholder="Prenom">
+    </label>
+  </mat-form-field>
+
+  <mat-form-field>
+    <label>
+      <input [(ngModel)]="user.lastName" name="nom" matInput placeholder="Nom">
+    </label>
+  </mat-form-field>
+
+  <mat-form-field>
+    <label>
+      <textarea [(ngModel)]="user.adresse" name="adresse" matInput placeholder="Adresse"></textarea>
+    </label>
+  </mat-form-field>
+
+  <mat-form-field>
+    <label>
+      <input [(ngModel)]="user.ville" name="ville" matInput placeholder="Ville">
+    </label>
+  </mat-form-field>
+
+  <mat-form-field>
+    <label>
+      <input [(ngModel)]="user.siret" name="siret" matInput placeholder="Siret">
+    </label>
+  </mat-form-field>
+
+  <mat-form-field>
+    <label>
+      <input [(ngModel)]="user.role" name="role" matInput placeholder="Role">
+    </label>
+  </mat-form-field>
+
+  <mat-form-field>
+    <label>
+      <input [(ngModel)]="user.CreatedAt" name="created" matInput placeholder="Date">
+    </label>
+  </mat-form-field>
+
+  <button mat-button class="blue-grey">Valider</button>
+</form>
+
+  <p>{{ user | json }}</p>
+
