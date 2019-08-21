@@ -2,7 +2,6 @@ const User = require('../model/user');
 const createError = require('http-errors');
 const slug = require('slug');
 const {ObjectID}  = require('mongodb');
-
 /**
  * Affichage de tous les profils utilisateurs (GET sur le point de montage "/users")
  * @param req
@@ -29,6 +28,7 @@ module.exports.list = (req, res, next) => {
 module.exports.createCheck = async (req, res) => {
     // Récupération des variables postées
     const user = new User(req.body);
+    user['profession'] = user['profession'];
     // Mise en plus du slug
     user.slug = slug(user.username, {lower: true});
     try{
@@ -59,9 +59,24 @@ module.exports.connect = async (req, res) => {
  * @param res
  * @returns {Promise<void>}
  */
-
 module.exports.show = async (req,res)=> {
     res.json(req.user);
+};
+/**
+ * Affichage d'un profil user en fonction du slug (GET sur le point de montage "/users/profil/:slug")
+ * @param req
+ * @param res
+ * @returns {Promise<void>}
+ */
+module.exports.display = async (req,res)=> {
+  const params = req.params;
+  User.findOne({slug: params.slug}, (err, user) => {
+    if (err)
+      next(err);
+    else
+      console.log(user);
+      res.json(user);
+  });
 };
 /**
  * Modification du profil de l'utilisateur connecté (PATCH sur le point de montage "/users/profil")
@@ -88,7 +103,6 @@ module.exports.update = async (req,res) => {
         res.status(400).json()
     }
 };
-
 /**
  * Suppression du prodil de l'utilisateur connecté (DELETE sur le point de montage "/users/profil"
  * @param req

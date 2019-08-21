@@ -9,6 +9,10 @@ const roleSchema = new mongoose.Schema({
   libelle: String
 });
 
+const professionSchema = new mongoose.Schema({
+  libelle: String
+});
+
 let UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -25,7 +29,6 @@ let UserSchema = new mongoose.Schema({
         throw new Error('Email is invalid!')
       }
     }
-
   },
   password:{
     type:String,
@@ -45,19 +48,18 @@ let UserSchema = new mongoose.Schema({
   tokens:[{
     token:{
       type:String,
-
     }
   }],
   createdAt:{
     type: Date,
     default: Date.now
   },
-  firstName: {
+  firstname: {
     type: String,
     required: false,
     trim: true
   },
-  lastName: {
+  lastname: {
     type: String,
     required: false,
     trim: true
@@ -68,6 +70,7 @@ let UserSchema = new mongoose.Schema({
     required: false,
     trim: true
   },
+  profession : [professionSchema],
   adresse: {
     type: String,
     required: false,

@@ -16,9 +16,11 @@ router.post('/', userController.createCheck);
 //Connexion utilisateur
 router.post('/login', userController.connect);
 
-// Pour visualiser un profil
+// Pour visualiser le profil de l'utilisateur connecté
 router.get('/profil', authenticate, userController.show);
 
+// Pour visualiser un profil d'un autre user
+router.get('/profil/:slug', userController.display);
 // pour modifier son profil
 router.patch('/profil', authenticate, userController.update);
 
