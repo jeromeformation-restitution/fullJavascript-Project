@@ -5,20 +5,16 @@ import { FormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-<<<<<<< HEAD
 import { AdminFormComponent } from './admin-form/admin-form.component';
-=======
 import { UserClientComponent } from './user-client/user-client.component';
->>>>>>> 682490e313c89daf31cc2a96cab04fd1534a0d1b
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-<<<<<<< HEAD
-    AdminFormComponent
-=======
-    UserClientComponent
->>>>>>> 682490e313c89daf31cc2a96cab04fd1534a0d1b
+    AdminFormComponent,
+    UserClientComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
