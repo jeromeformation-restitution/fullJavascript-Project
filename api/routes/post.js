@@ -17,6 +17,8 @@ router.get('/:slug',  postController.show);
 router.patch('/:slug', authenticate, postController.update);
 //pour supprimer un utilisateur
 router.delete('/:slug', authenticate, postController.delete);
+//Recherche d'une annonce (par titre ou categorie)
+router.post('/search', postController.search);
 
 
 module.exports = router;

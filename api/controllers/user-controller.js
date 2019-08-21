@@ -157,21 +157,16 @@ module.exports.logoutAll = async (req, res) => {
 
 module.exports.search = async (req,res) => {
   const query = {};
-  if (req.body.profession) query['profession.libelle'] = new RegExp(req.body.profession,'i');
+  if (req.body.profession) query["profession.libelle"] = new RegExp(req.body.profession,'i');
   if (req.body.ville) query['ville'] = new RegExp(req.body.ville,'i');
   if (req.body.roles) query['roles.libelle'] = new RegExp(req.body.roles,'i');
   console.log(query);
-
   User.find(
-    {
-      "profession.libelle" : "plombier"
-    },
+    query,
     (err, users) => {
       if (err)
         next(err);
       else
         res.json(users);
     });
-
-
 };

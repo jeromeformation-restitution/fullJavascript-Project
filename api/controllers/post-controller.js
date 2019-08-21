@@ -31,7 +31,7 @@ module.exports.createCheck = async (req, res) => {
   // Mise en plus du slug
   post.slug = slug(post.title, {lower: true});
   //Pour la catégorie, il faut récuperer un tableau d'objet de la part du front : ex:[{"libelle":"travaux manuels"}]
-  post['category'] = JSON.parse(req.body.category);
+  post['categories'] = JSON.parse(req.body.categories);
   post.author = req.user;
   try{
     await post.save();
@@ -97,4 +97,18 @@ module.exports.delete = async (req,res) => {
         res.status(500).send();
       }
   });
+};
+module.exports.search = async (req,res) => {
+  const query = {};
+  if (req.body.title) query["title"] = new RegExp(req.body.title,'i');
+  if (req.body.categories) query['categories.libelle'] = new RegExp(req.body.categories,'i');
+  console.log(query);
+  Post.find(
+    query,
+    (err, posts) => {
+      if (err)
+        next(err);
+      else
+        res.json(posts);
+    });
 };
