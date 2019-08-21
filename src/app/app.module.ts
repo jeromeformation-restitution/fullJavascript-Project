@@ -9,6 +9,9 @@ import { AdminFormComponent } from './admin-form/admin-form.component';
 import { UserClientComponent } from './user-client/user-client.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { NavComponent } from './nav/nav.component';
+import { ProfessionnelleComponent } from './professionnelle/professionnelle.component';
+import {MatInputModule} from '@angular/material/input';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,16 @@ import { NavComponent } from './nav/nav.component';
     UserClientComponent,
     HomepageComponent,
     NavComponent,
+    UserClientComponent,
+    ProfessionnelleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatInputModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
