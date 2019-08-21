@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { AdminFormComponent } from './admin-form/admin-form.component';
 import { UserClientComponent } from './user-client/user-client.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminFormComponent,
     UserClientComponent,
-    HomepageComponent
+    HomepageComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,

@@ -21,7 +21,7 @@ export class UserClientComponent implements OnInit {
    */
   public sendUser(): void {
     this.userservice.create(this.user).subscribe(datas => {
-        if(datas.token) {
+        if (datas.token) {
           console.log(datas);
           this.router.navigate(['/']);
         }
