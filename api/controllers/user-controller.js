@@ -28,7 +28,9 @@ module.exports.list = (req, res, next) => {
 module.exports.createCheck = async (req, res) => {
     // Récupération des variables postées
     const user = new User(req.body);
-    user['profession'] = user['profession'];
+    //Il faut récuperer un tableau d'objet de la part du front : ex:[{"libelle":"plombier"}]
+    user['profession'] = JSON.parse(req.body.profession);
+    user['roles'] = JSON.parse(req.body.roles);
     // Mise en plus du slug
     user.slug = slug(user.username, {lower: true});
     try{
@@ -151,4 +153,25 @@ module.exports.logoutAll = async (req, res) => {
     } catch (error) {
         res.status(500).json();
     }
+};
+
+module.exports.search = async (req,res) => {
+  const query = {};
+  if (req.body.profession) query['profession.libelle'] = new RegExp(req.body.profession,'i');
+  if (req.body.ville) query['ville'] = new RegExp(req.body.ville,'i');
+  if (req.body.roles) query['roles.libelle'] = new RegExp(req.body.roles,'i');
+  console.log(query);
+
+  User.find(
+    {
+      "profession.libelle" : "plombier"
+    },
+    (err, users) => {
+      if (err)
+        next(err);
+      else
+        res.json(users);
+    });
+
+
 };

@@ -30,6 +30,8 @@ module.exports.createCheck = async (req, res) => {
   const post = new Post(req.body);
   // Mise en plus du slug
   post.slug = slug(post.title, {lower: true});
+  //Pour la catégorie, il faut récuperer un tableau d'objet de la part du front : ex:[{"libelle":"travaux manuels"}]
+  post['category'] = JSON.parse(req.body.category);
   post.author = req.user;
   try{
     await post.save();
