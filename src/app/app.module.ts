@@ -9,12 +9,14 @@ import { AppComponent } from './app.component';
 import { AdminFormComponent } from './admin-form/admin-form.component';
 import { NavComponent } from './nav/nav.component';
 import { UserClientComponent } from './user-client/user-client.component';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
     AdminFormComponent,
     NavComponent,
-    UserClientComponent
+    UserClientComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
