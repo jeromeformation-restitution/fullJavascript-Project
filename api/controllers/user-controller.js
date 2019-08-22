@@ -26,14 +26,16 @@ module.exports.list = (req, res, next) => {
  */
 module.exports.createCheck = async (req, res) => {
     // Si le SIRET a été renseigné, on le traite pour avoir un Int (car tous les input renvoient un String)
-  if (req.body.SIRET) {
+    if (req.body.SIRET) {
       req.body.SIRET = parseInt(req.body.SIRET);
     }
-  // Récupération des variables postées
+    // Récupération des variables postées
     const user = new User(req.body);
     //Il faut récuperer un tableau d'objet de la part du front : ex:[{"libelle":"plombier"}]
-    user['profession'] = JSON.parse(req.body.profession);
-    user['roles'] = JSON.parse(req.body.roles);
+    user['roles'] = sanitize(req.body.roles);
+    user['profession'] = sanitize(req.body.profession);
+    //user['profession'] = JSON.parse(req.body.profession);
+    //user['roles'] = JSON.parse(user['roles']);
     // il faut parcourir le tableau des roles afin de voir si le client a un role "pro". Si oui, on ne valide pas son compte
     user['roles'].forEach((element) => {
       if (element.libelle.includes("pro")){
@@ -49,6 +51,15 @@ module.exports.createCheck = async (req, res) => {
         res.status(400).json(e)
     }
 };
+function sanitize (elem) {
+  elem.forEach((element, index) => {
+    const objet = {
+      libelle: element
+    };
+    elem.splice(index, 1, objet);
+  });
+  return elem;
+}
 /**
  * Connexion d'un utilisateur (POST sur le point de montage "/users/login")
  * @param req

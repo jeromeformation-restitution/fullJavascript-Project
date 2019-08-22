@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../Model/user';
+import {UserService} from "../user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-admin-form',
@@ -7,13 +9,18 @@ import { User } from '../Model/user';
   styleUrls: ['./admin-form.component.scss']
 })
 export class AdminFormComponent implements OnInit {
-
   public user: User;
-  constructor() {
+  constructor(private userservice: UserService, private router: Router) {
     this.user = new User();
   }
-
   ngOnInit() {
   }
-
+  public connectUser() {
+    this.userservice.connect(this.user).subscribe(datas => {
+      if (datas.token) {
+        console.log(datas);
+        this.router.navigate(['/']);
+      }
+    });
+  }
 }

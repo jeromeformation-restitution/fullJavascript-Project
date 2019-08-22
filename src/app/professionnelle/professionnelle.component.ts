@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../Model/user';
-import {Router} from "@angular/router";
+import {UserService} from '../user.service';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-professionnelle',
@@ -11,10 +13,21 @@ export class ProfessionnelleComponent implements OnInit {
 
   public user: User;
 
-  constructor() {
+  constructor(private userservice: UserService, private router: Router) {
     this.user = new User();
+    this.user.roles = ['pro'];
+    this.user.profession = [];
   }
   ngOnInit() {
   }
-
+  public sendUser(): void {
+    const input = document.getElementById('professionString').value;
+    this.user.profession.push(input);
+    this.userservice.create(this.user).subscribe(datas => {
+      if (datas.token) {
+        console.log(datas);
+        this.router.navigate(['/']);
+      }
+    });
+  }
 }

@@ -12,8 +12,9 @@ export class UserClientComponent implements OnInit {
   public user: User;
   constructor(private userservice: UserService, private router: Router) {
     this.user = new User();
+    this.user.roles = ['client'];
+    this.user.profession = [];
   }
-
   ngOnInit() {
   }
   /**

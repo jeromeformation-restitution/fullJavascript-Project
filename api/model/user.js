@@ -54,28 +54,26 @@ let UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  firstname: {
+  firstName: {
     type: String,
     required: false,
     trim: true
   },
-  lastname: {
+  lastName: {
     type: String,
     required: false,
     trim: true
   },
   roles : [roleSchema],
   SIRET: {
-    type: String,
+    type: Number,
     required: false,
-    validate(value){
-      const newValue = parseInt(value);
-      if(validator.isEmpty(newValue)){
-        throw new Error('Merci de rentrer votre SIRET')
-      }else if(!validator.isInt(newValue, {min:14, max:14})){
-
-        throw new Error('Le SIRET ne semble pas valide !')
-      }
+    validate: {
+      // On utilise une regex pour tester la valeur du SIRET envoyé
+      validator: function(value) {
+        return /[0-9]{14}/.test(value);
+      },
+      message: `le SIRET ne semble pas être un SIRET valide !`
     }
   },
   profession : [professionSchema],
@@ -113,16 +111,13 @@ UserSchema.virtual('posts', {
 
 UserSchema.statics.checkValidCredentials = async (email, password) => {
   const user = await User.findOne({email})
-
   if(!user){
     throw new Error('Unable to login 2')
   }
   const isMatch = await bcrypt.compare(password,user.password)
-
   if(!isMatch){
     throw new Error('Unable to login 2')
   }
-
   return user
 };
 
@@ -137,10 +132,8 @@ UserSchema.methods.newAuthToken = async function(){
 UserSchema.methods.toJSON = function(){
   const user = this;
   const userObj = user.toObject();
-
   delete userObj.password;
   delete userObj.tokens;
-
   return userObj;
 };
 

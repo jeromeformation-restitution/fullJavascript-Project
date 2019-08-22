@@ -67,4 +67,9 @@ export class UserService {
       tap(datas => console.log(datas))
     );
   }
+  connect(user: User): Observable<ResponseApi> {
+    return this.http.post<ResponseApi>(this.apiUrl + '/login', user, this.JSONHeaders).pipe(
+      tap(datas => console.log('Retour API (connexion user) :'))
+    );
+  }
 }

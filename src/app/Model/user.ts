@@ -6,11 +6,13 @@ export class User {
   public password: string;
   public CreatedAt: Date;
   public firstName: string;
+  public profession: Array<string>;
   public lastName: string;
-  public role: Array<string>;
+  public roles: Array<string>;
   public siret: number;
   public adresse: string;
   public ville: string;
+  public imageName: string;
 
   constructor(id?: string, username?: string) {
     this.id = id;
