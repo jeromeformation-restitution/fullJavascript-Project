@@ -46,6 +46,7 @@
     <label for="adresse" class="control-label">Adresse</label>
     <input [(ngModel)]="user.adresse" type="text" class="form-control" name="adresse" id="adresse" placeholder="Adresse">
   </div>
+  
 
   <div class="form-group">
     <label for="ville" class="control-label">Ville</label>
@@ -61,6 +62,21 @@
     <button type="submit" class="btn btn-primary">Register</button>
   </div>
 </form>
+
+<div class="span1">
+  <a href="#" class="btn btn-primary">
+      <i class="icon-pencil icon-white"></i>
+      <span><strong>Client</strong></span>            
+  </a>
+</div>
+<div class="span1">
+  <a href="#" class="btn btn-primary">
+      <i class="icon-eye-open icon-white"></i>
+      <span><strong>Professionnelle
+
+      </strong></span>        	
+  </a>
+</div>
 
   <p>{{ user | json }}</p>
 </section>
