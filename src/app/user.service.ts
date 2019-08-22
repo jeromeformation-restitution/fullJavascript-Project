@@ -27,6 +27,17 @@ export class UserService {
         catchError(this.handleError)
       );
   }
+  /**
+   * Recupere les users "Pro" de l'API
+   */
+  public getUsersPro(): Observable<User[]> {
+    return this.http
+      .get<User[]>(this.apiUrl + "/pros")
+      .pipe(
+        tap(users => console.log(users.length + ' utilisateurs reçus de l\'API')),
+        catchError(this.handleError)
+      );
+  }
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

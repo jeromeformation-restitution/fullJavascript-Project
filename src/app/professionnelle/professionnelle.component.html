@@ -1,6 +1,6 @@
 <section class="container">
 
-<form (ngSubmit)="sendUser()">
+<form (ngSubmit)="sendUser(input.value)">
 
   <div class="form-group">
     <label for="username" class="control-label">Nom d'utilisateur</label>
@@ -43,7 +43,7 @@
   </div>
   <div class="form-group">
     <label for="professionString" class="control-label">Profession</label>
-    <input type="text" class="form-control" name="professionString" id="professionString">
+    <input #input type="text" class="form-control" name="professionString" id="professionString">
   </div>
   <div class="form-group"> <!-- Register Button -->
     <button type="submit" class="btn btn-primary">Enregistrer</button>

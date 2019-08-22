@@ -8,6 +8,7 @@ const userController = require('../controllers/user-controller.js');
 // Point de montage "/users"
 /* Liste de tous les utilisateurs */
 router.get('/', userController.list);
+router.get('/pros', userController.listPro);
 //Création d'un utilisateur
 router.post('/', userController.createCheck);
 //Connexion utilisateur

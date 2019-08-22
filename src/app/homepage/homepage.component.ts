@@ -13,7 +13,7 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userservice.getUsers().subscribe(users => {
+    this.userservice.getUsersPro().subscribe(users => {
       this.users = users;
     });
   }

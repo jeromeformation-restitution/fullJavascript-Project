@@ -20,8 +20,8 @@ export class ProfessionnelleComponent implements OnInit {
   }
   ngOnInit() {
   }
-  public sendUser(): void {
-    const input = document.getElementById('professionString').value;
+  public sendUser(value): void {
+    const input = value;
     this.user.profession.push(input);
     this.userservice.create(this.user).subscribe(datas => {
       if (datas.token) {

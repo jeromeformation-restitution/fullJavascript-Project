@@ -18,6 +18,19 @@ module.exports.list = (req, res, next) => {
         }
     });
 };
+module.exports.listPro = (req, res, next) => {
+  User.find({
+    isValid:true,
+    SIRET: { "$ne": 0 }
+  },(err, users) => {
+    if (err) {
+      next(err);
+    } else {
+      console.log(users);
+      res.json(users);
+    }
+  });
+};
 /**
  * Enregistrement d'une utilisateur (POST sur le point de montage "/users")
  * @param req
