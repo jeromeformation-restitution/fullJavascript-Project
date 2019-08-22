@@ -74,13 +74,21 @@ export class UserService {
   }
   delete(user: User): Observable<ResponseApi> {
     return this.http.delete<ResponseApi>(this.apiUrl + '/profile', this.JSONHeaders).pipe(
-      tap(datas => console.log('Retour API (Suppression user) :')),
+      tap(datas => console.log('Retour API (Suppression user) :' + datas)),
       tap(datas => console.log(datas))
     );
   }
   connect(user: User): Observable<ResponseApi> {
     return this.http.post<ResponseApi>(this.apiUrl + '/login', user, this.JSONHeaders).pipe(
-      tap(datas => console.log('Retour API (connexion user) :'))
+      tap(datas => console.log('Retour API (connexion user) :' + datas))
+    );
+  }
+  // Cette methode permet de faire une appel a l'API pour obtenir des users en fonction d'une recherche (search)
+  search(optionCategory: string, recherche: string): Observable<User[] | null> {
+    const objet = {};
+    objet[optionCategory] = recherche;
+    return this.http.post<User[]|null>(this.apiUrl + '/search', objet, this.JSONHeaders).pipe(
+      tap(datas => console.log('Retour API (recherche user) :' + datas))
     );
   }
 }

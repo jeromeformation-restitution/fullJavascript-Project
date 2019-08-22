@@ -1,3 +1,5 @@
+import {Profession} from './professions';
+
 export class User {
 
   public id: string;
@@ -6,7 +8,7 @@ export class User {
   public password: string;
   public createdAt: Date;
   public firstName: string;
-  public profession: Array<string>;
+  public profession: Array<Profession>;
   public lastName: string;
   public roles: Array<string>;
   public siret: number;

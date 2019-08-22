@@ -9,9 +9,10 @@
               <div class="card">
                 <div class="card-body text-center">
                   <p><img class="img-fluid" src="assets/img/users/{{(user.imageName) ? user.imageName : 'user_circle.png'}}" alt="card image"></p>
-                  <h4 class="card-title">{{user.username}}</h4>
+                  <h4 class="card-title">{{user.username}} </h4>
+                  <h5>{{user.ville}}</h5>
                   <p class="card-text"><span *ngFor="let profession of user.profession">{{profession.libelle}}, </span></p>
-                  <a routerLink="profil/{{user.slug}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                  <a routerLink="profil/{{user.slug}}" class="btn btn-primary btn-sm">Voir le profil</a>
                 </div>
               </div>
             </div>

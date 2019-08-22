@@ -188,9 +188,9 @@ module.exports.logoutAll = async (req, res) => {
         res.status(500).json();
     }
 };
-
 module.exports.search = async (req,res) => {
   const query = {};
+  console.log(req.body);
   if (req.body.profession) query["profession.libelle"] = new RegExp(req.body.profession,'i');
   if (req.body.ville) query['ville'] = new RegExp(req.body.ville,'i');
   if (req.body.roles) query['roles.libelle'] = new RegExp(req.body.roles,'i');
@@ -201,6 +201,7 @@ module.exports.search = async (req,res) => {
       if (err)
         next(err);
       else
+
         res.json(users);
     });
 };
