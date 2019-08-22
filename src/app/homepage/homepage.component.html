@@ -1,25 +1,23 @@
-<div class="container">
-<div class="flex-row">
-  <ng-container *ngIf="users">
-    <div *ngFor="let user of users">
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-          <div class="mainflip">
-            <div class="frontside">
-              <div class="card">
-                <div class="card-body text-center">
-                  <p><img class="img-fluid" src="assets/img/users/{{(user.imageName) ? user.imageName : 'user_circle.png'}}" alt="card image"></p>
-                  <h4 class="card-title">{{user.username}} </h4>
-                  <h5>{{user.ville}}</h5>
-                  <p class="card-text"><span *ngFor="let profession of user.profession">{{profession.libelle}}, </span></p>
-                  <a routerLink="profil/{{user.slug}}" class="btn btn-primary btn-sm">Voir le profil</a>
-                </div>
-              </div>
+<main class="container">
+  <div class="row justify-content-center">
+    <ng-container *ngIf="users">
+      <div *ngFor="let user of users" class="col-xs-12 col-sm-6 col-md-4 col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <div class="row justify-content-around">
+            <img class="card-img-top ml-0" src="assets/img/users/{{(user.imageName) ? user.imageName : 'user_circle.png'}}" alt="Image de {{user.username}}">
+              <p class="text-muted">{{user.ville}}</p>
             </div>
+          </div>
+          <div class="card-body text-center">
+            <h5 class="card-title">{{user.username}}</h5>
+            <p class="card-text"><span *ngFor="let profession of user.profession">{{profession.libelle}} </span></p>
+            <a routerLink="profil/{{user.slug}}" class="btn btn-primary btn-sm">Voir le profil</a>
+          </div>
+          <div class="card-footer">
           </div>
         </div>
       </div>
-    </div>
-  </ng-container>
-</div>
-</div>
+    </ng-container>
+  </div>
+</main>

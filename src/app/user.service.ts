@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable, of, throwError} from 'rxjs';
-import {User} from './model/user';
+import {User} from './Model/user';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {catchError, tap} from 'rxjs/operators';
 import {ResponseApi} from './Model/response-api';

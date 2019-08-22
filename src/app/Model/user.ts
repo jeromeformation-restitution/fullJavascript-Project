@@ -1,4 +1,4 @@
-import {Profession} from './professions';
+import {Profession} from '../Model/professions';
 
 export class User {
 
