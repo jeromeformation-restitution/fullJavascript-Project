@@ -10,7 +10,6 @@ import { UserClientComponent } from './user-client/user-client.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { NavComponent } from './nav/nav.component';
 import { ProfessionnelleComponent } from './professionnelle/professionnelle.component';
-import {MatInputModule} from '@angular/material/input';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -28,7 +27,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    MatInputModule,
     BrowserAnimationsModule
   ],
   providers: [],
