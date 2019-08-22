@@ -11,7 +11,7 @@ const routes: Routes = [
   {path: '', component : HomepageComponent},
   {path: 'admin', component : AdminFormComponent},
   {path: 'user-client', component : UserClientComponent},
-  {path: 'professionnelle/creation', component: ProfessionnelleComponent}
+  {path: 'professionnelle', component: ProfessionnelleComponent}
 ];
 
 @NgModule({

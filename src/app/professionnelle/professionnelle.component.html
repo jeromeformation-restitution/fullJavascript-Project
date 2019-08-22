@@ -1,82 +1,45 @@
 <section class="container">
 
-<h1>Création d'un Profil Professionnelle</h1>
-
 <form (ngSubmit)="sendUser()">
 
-  <div class="form-group">
-    <label for="pseudo" class="control-label">Pseudo</label>
-  <input [(ngModel)]="user.username" type="text" class="form-control" id="pseudo" name="username" placeholder="Pseudo">
-  </div>
+    <div class="form-group">
+        <label for="email" class="control-label">Email</label>
+          <input [(ngModel)]="user.email" type="text" class="form-control" name="email" id="email">
+      </div>
 
   <div class="form-group">
     <label for="password" class="control-label">Mot de Passe</label>
-      <input [(ngModel)]="user.password" type="password" class="form-control" name="password" id="password"  placeholder="Mot de Passe">
+      <input [(ngModel)]="user.password" type="password" class="form-control" name="password" id="password">
   </div>
 
   <div class="form-group">
-    <label for="email" class="control-label">Email</label>
-      <input [(ngModel)]="user.email" type="text" class="form-control" name="email" id="email" placeholder="Email">
-  </div>
-
+      <label for="nom" class="control-label">Nom</label>
+      <input [(ngModel)]="user.lastName" type="text" class="form-control" name="nom" id="nom">
+    </div>
+  
   <div class="form-group">
     <label for="prenom" class="control-label">Prenom</label>
-      <input [(ngModel)]="user.firstName" type="text" class="form-control" name="prenom" id="prenom" placeholder="Prenom">
-  </div>
-
-  <div class="form-group">
-    <label for="nom" class="control-label">Nom</label>
-    <input [(ngModel)]="user.lastName" type="text" class="form-control" name="nom" id="nom" placeholder="Nom">
-  </div>
-
-  <div class="form-group">
-    <label for="role" class="control-label">Role</label>
-    <input [(ngModel)]="user.role" type="radio" class="form-control" name="professionnelle" value="professionnelle" id="role" placeholder="Role">
-    <label for="role">Professionnelle</label>
-    <input [(ngModel)]="user.role" type="radio" class="form-control" name="client" value="client" id="role2" placeholder="Role">
-    <label for="role2">Client</label>
-  </div>
-
-  <div class="form-group">
-    <label for="siret" class="control-label">Siret</label>
-    <input [(ngModel)]="user.siret" type="text" class="form-control" name="siret" id="siret" placeholder="siret">
+      <input [(ngModel)]="user.firstName" type="text" class="form-control" name="prenom" id="prenom">
   </div>
 
   <div class="form-group">
     <label for="adresse" class="control-label">Adresse</label>
-    <input [(ngModel)]="user.adresse" type="text" class="form-control" name="adresse" id="adresse" placeholder="Adresse">
+    <input [(ngModel)]="user.adresse" type="text" class="form-control" name="adresse" id="adresse">
   </div>
-  
 
   <div class="form-group">
     <label for="ville" class="control-label">Ville</label>
-    <input [(ngModel)]="user.ville" type="text" class="form-control" name="ville" id="ville" placeholder="Ville">
+    <input [(ngModel)]="user.ville" type="text" class="form-control" name="ville" id="ville">
   </div>
 
   <div class="form-group">
-    <label for="date" class="control-label">CreatedAt</label>
-    <input [(ngModel)]="user.CreatedAt" type="date" class="form-control" name="date" id="date" placeholder="Date">
-  </div>
-
-  <div class="form-group"> <!-- Register Button -->
-    <button type="submit" class="btn btn-primary">Register</button>
+      <label for="siret" class="control-label">Siret</label>
+      <input [(ngModel)]="user.siret" type="text" class="form-control" name="siret" id="siret">
+    </div>
+  
+ <div class="form-group"> <!-- Register Button -->
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
   </div>
 </form>
-
-<div class="span1">
-  <a href="#" class="btn btn-primary">
-      <i class="icon-pencil icon-white"></i>
-      <span><strong>Client</strong></span>            
-  </a>
-</div>
-<div class="span1">
-  <a href="#" class="btn btn-primary">
-      <i class="icon-eye-open icon-white"></i>
-      <span><strong>Professionnelle
-
-      </strong></span>        	
-  </a>
-</div>
-
   <p>{{ user | json }}</p>
 </section>
