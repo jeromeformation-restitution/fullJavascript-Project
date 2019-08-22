@@ -25,11 +25,21 @@ module.exports.list = (req, res, next) => {
  * @return String
  */
 module.exports.createCheck = async (req, res) => {
-    // Récupération des variables postées
+    // Si le SIRET a été renseigné, on le traite pour avoir un Int (car tous les input renvoient un String)
+  if (req.body.SIRET) {
+      req.body.SIRET = parseInt(req.body.SIRET);
+    }
+  // Récupération des variables postées
     const user = new User(req.body);
     //Il faut récuperer un tableau d'objet de la part du front : ex:[{"libelle":"plombier"}]
     user['profession'] = JSON.parse(req.body.profession);
     user['roles'] = JSON.parse(req.body.roles);
+    // il faut parcourir le tableau des roles afin de voir si le client a un role "pro". Si oui, on ne valide pas son compte
+    user['roles'].forEach((element) => {
+      if (element.libelle.includes("pro")){
+        user.isValid = 0;
+      }
+    });
     // Mise en plus du slug
     user.slug = slug(user.username, {lower: true});
     try{
