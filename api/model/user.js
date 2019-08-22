@@ -65,7 +65,7 @@ let UserSchema = new mongoose.Schema({
     trim: true
   },
   roles : [roleSchema],
-  SIRET: {
+  siret: {
     type: Number,
     required: false,
     validate: {

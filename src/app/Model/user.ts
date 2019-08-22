@@ -4,7 +4,7 @@ export class User {
   public username: string;
   public email: string;
   public password: string;
-  public CreatedAt: Date;
+  public createdAt: Date;
   public firstName: string;
   public profession: Array<string>;
   public lastName: string;
@@ -13,11 +13,10 @@ export class User {
   public adresse: string;
   public ville: string;
   public imageName: string;
+  public slug: string;
 
   constructor(id?: string, username?: string) {
     this.id = id;
     this.username = username;
-    this.siret = 0;
   }
-
 }

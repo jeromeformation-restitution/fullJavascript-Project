@@ -17,6 +17,7 @@ export class ProfessionnelleComponent implements OnInit {
     this.user = new User();
     this.user.roles = ['pro'];
     this.user.profession = [];
+    this.user.siret = 0;
   }
   ngOnInit() {
   }

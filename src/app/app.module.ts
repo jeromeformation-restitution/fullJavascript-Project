@@ -11,6 +11,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { NavComponent } from './nav/nav.component';
 import { ProfessionnelleComponent } from './professionnelle/professionnelle.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ProfilPageComponent } from './profil-page/profil-page.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     HomepageComponent,
     NavComponent,
     UserClientComponent,
-    ProfessionnelleComponent
+    ProfessionnelleComponent,
+    ProfilPageComponent
   ],
   imports: [
     BrowserModule,

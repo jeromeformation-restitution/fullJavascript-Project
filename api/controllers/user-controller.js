@@ -21,7 +21,7 @@ module.exports.list = (req, res, next) => {
 module.exports.listPro = (req, res, next) => {
   User.find({
     isValid:true,
-    SIRET: { "$ne": 0 }
+    siret:{$exists:true}
   },(err, users) => {
     if (err) {
       next(err);
@@ -39,8 +39,8 @@ module.exports.listPro = (req, res, next) => {
  */
 module.exports.createCheck = async (req, res) => {
     // Si le SIRET a été renseigné, on le traite pour avoir un Int (car tous les input renvoient un String)
-    if (req.body.SIRET) {
-      req.body.SIRET = parseInt(req.body.SIRET);
+    if (req.body.siret) {
+      req.body.siret = parseInt(req.body.siret);
     }
     // Récupération des variables postées
     const user = new User(req.body);
