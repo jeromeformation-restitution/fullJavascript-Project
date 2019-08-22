@@ -66,9 +66,17 @@ let UserSchema = new mongoose.Schema({
   },
   roles : [roleSchema],
   SIRET: {
-    type: Number,
+    type: String,
     required: false,
-    trim: true
+    validate(value){
+      const newValue = parseInt(value);
+      if(validator.isEmpty(newValue)){
+        throw new Error('Merci de rentrer votre SIRET')
+      }else if(!validator.isInt(newValue, {min:14, max:14})){
+
+        throw new Error('Le SIRET ne semble pas valide !')
+      }
+    }
   },
   profession : [professionSchema],
   adresse: {
@@ -92,8 +100,9 @@ let UserSchema = new mongoose.Schema({
     type: String,
     default: 'user_circle.png'
   },
-  isAdmin: {
-    type: Boolean
+  isValid: {
+    type: Boolean,
+    default: true
   }
 });
 UserSchema.virtual('posts', {
