@@ -1,0 +1,19 @@
+<ng-container *ngIf="msg">
+  <div class="container">
+    <div class="col-xs-12 col-sm-10 col-md-10">
+      <div class="card mt-4">
+        <div class="row">
+          <div class="col-sm-6 col-md-8">
+            <h4>{{msg.title}}</h4>
+            <h5>Envoyé par : {{msg.author.username}}</h5>
+            <i class="fas fa-clock"></i> le : {{msg.createdAt | date:'dd/MM/yy'}}
+            <p>Contenu : {{msg.content}}</p>
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary"><a routerLink="/message/{{msg.author.slug}}"> Répondre</a></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

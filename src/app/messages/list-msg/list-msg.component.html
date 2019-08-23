@@ -1,0 +1,25 @@
+<div class="container">
+  <table class="table table-bordered table-dark">
+  <thead>
+    <tr>
+      <th>De</th>
+      <th>a</th>
+      <th>titre</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <ng-container *ngIf="msgs">
+  <tbody>
+
+      <tr *ngFor="let msg of msgs">
+        <a routerLink="/message/read/{{msg._id}}">
+          <th>{{msg.author.username}}</th>
+          <td>{{msg.recipient.username}}</td>
+          <td>{{msg.title}}</td>
+          <td></td>
+        </a>
+      </tr>
+  </tbody>
+  </ng-container>
+</table>
+</div>

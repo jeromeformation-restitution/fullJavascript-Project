@@ -7,9 +7,10 @@ const Msg = require('../model/msg');
  * @param next
  */
 module.exports.list = (req, res, next) => {
-  Msg.find({
-    "recipient": req.user._id
-    },
+  Msg.find({"recipient": req.user._id})
+    .populate('author')
+    .populate('recipient')
+    .exec(
     (err, msgs) => {
     if (err) {
       next(err);

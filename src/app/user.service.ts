@@ -83,6 +83,11 @@ export class UserService {
       tap(datas => console.log('Retour API (connexion user) :' + datas))
     );
   }
+  logout(): Observable<ResponseApi> {
+    return this.http.get<ResponseApi>(this.apiUrl + '/logout').pipe(
+      tap(datas => console.log(datas))
+    );
+  }
   // Cette methode permet de faire une appel a l'API pour obtenir des users en fonction d'une recherche (search)
   search(optionCategory: string, recherche: string): Observable<User[] | null> {
     const objet = {};

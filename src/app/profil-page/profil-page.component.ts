@@ -12,15 +12,12 @@ export class ProfilPageComponent implements OnInit {
 
   public user: User;
   public slug: string;
-  constructor(private userservice: UserService, private router: Router, private route: ActivatedRoute, ) {
+  constructor(private userservice: UserService, private router: Router, private route: ActivatedRoute) {
     this.slug = this.route.snapshot.paramMap.get('slug');
   }
-
-
   ngOnInit() {
     this.userservice.getUser(this.slug).subscribe(user => {
       this.user = user;
     });
   }
-
 }

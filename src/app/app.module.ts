@@ -12,6 +12,9 @@ import { NavComponent } from './nav/nav.component';
 import { ProfessionnelleComponent } from './professionnelle/professionnelle.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ProfilPageComponent } from './profil-page/profil-page.component';
+import { CreateMsgComponent } from './messages/create-msg/create-msg.component';
+import { ListMsgComponent } from './messages/list-msg/list-msg.component';
+import { ShowMsgComponent } from './messages/show-msg/show-msg.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { ProfilPageComponent } from './profil-page/profil-page.component';
     NavComponent,
     UserClientComponent,
     ProfessionnelleComponent,
-    ProfilPageComponent
+    ProfilPageComponent,
+    CreateMsgComponent,
+    ListMsgComponent,
+    ShowMsgComponent
   ],
   imports: [
     BrowserModule,

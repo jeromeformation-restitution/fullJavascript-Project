@@ -20,7 +20,7 @@
                             <i class="fas fa-clock"></i> Inscription : {{user.createdAt | date:'dd/MM/yy'}}</p>
                         <!-- Split button -->
                         <div class="btn-group">
-                            <button type="button" class="btn btn-primary">Envoyer un message</button>
+                          <button type="button" class="btn btn-primary"><a routerLink="/message/{{user.slug}}"> Envoyer un message</a></button>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../Model/user';
-import {UserService} from "../user.service";
-import {Router} from "@angular/router";
+import {UserService} from '../user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin-form',
@@ -19,6 +19,8 @@ export class AdminFormComponent implements OnInit {
     this.userservice.connect(this.user).subscribe(datas => {
       if (datas.token) {
         console.log(datas);
+        localStorage.setItem('user', JSON.stringify(datas.user));
+        localStorage.setItem('token', JSON.stringify(datas.token));
         this.router.navigate(['/']);
       }
     });
